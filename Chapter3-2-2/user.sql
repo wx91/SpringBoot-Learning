@@ -1,0 +1,6 @@
+CREATE TABLE user
+(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20),
+    age INT
+);
