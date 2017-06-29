@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -27,6 +28,7 @@ public class UserControllerTests {
 	@Before
 	public void setUp() throws Exception {
 		mvc = MockMvcBuilders.standaloneSetup(new UserController()).build();
+		
 	}
 	
 	@Test
@@ -35,14 +37,18 @@ public class UserControllerTests {
 		mvc.perform(request).
 		andExpect(status().isOk()).
 		andExpect(content().string(equalTo("[]")));
+		//上传文件测试
+		fileUpload("23423").file("23423", "34334".getBytes()).param("234234", "23423");
 	}
 	
 	@Test
 	public void testPostUser() throws Exception{
+	
 		RequestBuilder request = post("/users/")
 				.param("id", "2")
 				.param("name", "测试大师")
 				.param("age", "20");
+		
 		mvc.perform(request)
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(content().string(equalTo("success")));
