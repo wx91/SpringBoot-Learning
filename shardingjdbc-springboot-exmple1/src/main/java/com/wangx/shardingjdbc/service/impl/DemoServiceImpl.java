@@ -29,7 +29,7 @@ public class DemoServiceImpl implements DemoService {
 		System.out.println("1.Insert--------------");
 		for (int i = 0; i < 10; i++) {
 			Order order = new Order();
-			order.setUserId(51);
+			order.setUserId(i);
 			order.setStatus("INSERT_TEST");
 			orderMapper.insert(order);
 			long orderId = order.getOrderId();
@@ -37,7 +37,7 @@ public class DemoServiceImpl implements DemoService {
 
 			OrderItem item = new OrderItem();
 			item.setOrderId(orderId);
-			item.setUserId(51);
+			item.setUserId(i);
 			item.setStatus("INSERT_TEST");
 			orderItemMapper.insert(item);
 		}
